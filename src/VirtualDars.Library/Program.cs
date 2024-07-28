@@ -4,36 +4,36 @@
 	{
 		public static void Main(string[] args)
 		{
-			Library library = new Library();
+			Library library = new();
 			library.RegisterUser("Ahmad");
-			library.AddBook("The Barakah Culture");
-			library.BorrowBook("Ahmad", "The Barakah Culture");
-			library.ReturnBook("Ahmad", "The Barakah Culture");
+			library.AddBook("The Barakah Culture: More with Less");
+			library.TakeBook("Ahmad", "The Barakah Culture: More with Less");
+			library.ReturnBook("Ahmad", "The Barakah Culture: More with Less");
 		}
 	}
 
 	public class Library
 	{
-		private List<string> books = new();
-		private List<string> users = new();
+		private List<string> _books = new();
+		private List<string> _users = new();
 
 		public void AddBook(string book)
 		{
-			books.Add(book);
+			_books.Add(book);
 			Console.WriteLine($"Book '{book}' added to the library.");
 		}
 
 		public void RegisterUser(string user)
 		{
-			users.Add(user);
+			_users.Add(user);
 			Console.WriteLine($"User '{user}' registered.");
 		}
 
-		public void BorrowBook(string user, string book)
+		public void TakeBook(string user, string book)
 		{
-			if (users.Contains(user) && books.Contains(book))
+			if (_users.Contains(user) && _books.Contains(book))
 			{
-				books.Remove(book);
+				_books.Remove(book);
 				Console.WriteLine($"User '{user}' borrowed book '{book}'.");
 			}
 			else
@@ -44,7 +44,7 @@
 
 		public void ReturnBook(string user, string book)
 		{
-			books.Add(book);
+			_books.Add(book);
 			Console.WriteLine($"User '{user}' returned book '{book}'.");
 		}
 	}
